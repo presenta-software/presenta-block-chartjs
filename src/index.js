@@ -1,7 +1,7 @@
 import css from './style.css'
 import Chart from 'chart.js'
 
-const block = function (el, config, rootElement, projectConfig) {
+const block = function (el, config) {
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
 

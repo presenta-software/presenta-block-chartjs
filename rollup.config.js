@@ -33,6 +33,7 @@ export default {
           /global/
         ]
       },
+      autoModules: false,
       plugins: [
         autoprefixer({ grid: true }),
         cssnano({ preset: 'default' })

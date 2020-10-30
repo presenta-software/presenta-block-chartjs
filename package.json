@@ -8,7 +8,7 @@
   "scripts": {
     "start": "rollup -c --watch",
     "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish",
-    "test": "browser-sync start -s -f \"dist/*, test/*\"",
+    "test": "browser-sync start -s -f \"dist/*, test/*\" --startPath test",
     "build": "rollup -c"
   },
   "author": "Franchino Fabio",

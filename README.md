@@ -22,3 +22,14 @@ To configure this block use this setting:
 | chart     | A valid Chart.js [configuration object](https://www.chartjs.org/docs/latest/) **(required)** |               | JS object       |
 |           |                                                              |               |                 |
 
+
+
+## Development
+
+Run the watcher:
+
+    npm start
+
+and the local webserver
+
+    npm run test
