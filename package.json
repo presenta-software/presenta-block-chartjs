@@ -1,6 +1,6 @@
 {
   "name": "@presenta/block-chartjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Presenta Block to render a Chart.js component",
   "main": "index.js",
   "unpkg": "dist/presenta-block-chartjs.min.js",
