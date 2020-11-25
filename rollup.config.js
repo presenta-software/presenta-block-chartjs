@@ -39,6 +39,6 @@ export default {
         cssnano({ preset: 'default' })
       ]
     })
-  ],
-  external: ['moment']
+  ]
+  // external: ['moment']
 }
