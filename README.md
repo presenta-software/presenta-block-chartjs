@@ -2,34 +2,24 @@
 
 This block displays a [Chart.js](https://www.chartjs.org/) component within a [PRESENTA Lib](https://github.com/presenta-software/presenta-lib) document.
 
-## Installation
+## Documentation
 
+Full documentation can be found [here](https://lib.presenta.cc/blocks/chartjs).
 
-Please read the installation istructions for official plugins [here](https://lib.presenta.cc/extend/#install-an-official-plugin) using this unique identifier: `block-chartjs`
+## Contribute
 
-To configure this block use this setting:
+### Development
 
-```js
-{
-    type: 'chartjs',
-    chart: {...}
-}
-```
+To start a development session:
 
-| Prop name | Description                                                  | Default value | Possible values |
-| --------- | ------------------------------------------------------------ | ------------- | --------------- |
-| type      | Define this block type **(required)**                        |               | chartjs         |
-| chart     | A valid Chart.js [configuration object](https://www.chartjs.org/docs/latest/) **(required)** |               | JS object       |
-|           |                                                              |               |                 |
+	npm start
 
+To build a release:
 
+	npm run build
 
-## Development
+## Licence
 
-Run the watcher:
+**PRESENTA Lib** is released under the [3-Clause BSD license](LICENSE).
 
-    npm start
-
-and the local webserver
-
-    npm run test
+Copyright © 2020 Fabio Franchino, [https://fabiofranchino.com](https://fabiofranchino.com)
