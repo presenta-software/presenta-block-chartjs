@@ -4,7 +4,7 @@ This block displays a [Chart.js](https://www.chartjs.org/) component within a [P
 
 ## Documentation
 
-Full documentation can be found [here](https://lib.presenta.cc/blocks/chartjs).
+Full documentation can be found [here](https://lib.presenta.cc/plugins/blocks/chartjs).
 
 ## Contribute
 
