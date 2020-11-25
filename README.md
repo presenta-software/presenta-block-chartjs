@@ -1,5 +1,7 @@
 # PRESENTA Chart.js Block
 
+![](https://img.shields.io/npm/v/@presenta/block-chartjs)
+
 This block displays a [Chart.js](https://www.chartjs.org/) component within a [PRESENTA Lib](https://github.com/presenta-software/presenta-lib) document.
 
 ## Documentation
@@ -20,6 +22,6 @@ To build a release:
 
 ## Licence
 
-**PRESENTA Lib** is released under the [3-Clause BSD license](LICENSE).
+This plugin is released under the [3-Clause BSD license](LICENSE).
 
 Copyright © 2020 Fabio Franchino, [https://fabiofranchino.com](https://fabiofranchino.com)
