@@ -9,7 +9,7 @@ const block = function (el, config) {
 
   const canvas = child.querySelector('canvas')
 
-  const cchart = config.chart
+  const cchart = config.config
   let instancedChart = null
   if (cchart) {
     if (!cchart.options) cchart.options = {}
