@@ -7,15 +7,33 @@ const block = function (el, config) {
 
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
+  let def = config.config
+  let instancedChart = null
+
+  const createChart = () => {
+    if (!def.options) def.options = {}
+    def.options.responsive = true
+    def.options.maintainAspectRatio = false
+    instancedChart = new Chart(canvas, def)
+  }
   const canvas = child.querySelector('canvas')
 
-  const cchart = config.config
-  let instancedChart = null
-  if (cchart) {
-    if (!cchart.options) cchart.options = {}
-    cchart.options.responsive = true
-    cchart.options.maintainAspectRatio = false
-    instancedChart = new Chart(canvas, cchart)
+  if (def) {
+    createChart()
+  } else {
+    if (config._cache) {
+      def = JSON.parse(config._cache)
+      createChart()
+    } else {
+      // fallback to direct loading
+      fetch(config.url)
+        .then(resp => resp.text())
+        .then(data => {
+          config._cache = data
+          def = JSON.parse(config._cache)
+          createChart()
+        })
+    }
   }
 
   this.beforeDestroy = () => {
@@ -35,6 +53,7 @@ export default block
 
 block.install = Presenta => {
   Presenta.addBlock('chartjs', block)
+  if (Presenta.io.addCache) Presenta.io.addCache({ type: 'chartjs', field: 'url' })
 }
 
 if (typeof window !== 'undefined' && window.Presenta) {
