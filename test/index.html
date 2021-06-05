@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PresentaBlockStarter</title>
+    <title>PresentaBlockChartjs</title>
     <script src="../dist/presenta-block-chartjs.min.js"></script>
 </head>
 <body>
@@ -16,11 +16,38 @@
             config: {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3]
+                        label: 'Sales',
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgb(75, 192, 192)',
+                        data: [
+                            {key: '2019', value: 1500}, 
+                            {key: '2020', value: 500},
+                            {key: '2021', value: 700}
+                        ]
+                    },
+                    {
+                        label: 'Purchases',
+                        borderColor: 'rgb(175, 92, 192)',
+                        backgroundColor: 'rgb(175, 92, 192)',
+                        data: [
+                            {key: '2019', value: 2500}, 
+                            {key: '2020', value: 200},
+                            {key: '2021', value: 400}
+                        ]
                     }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    parsing: {
+                        xAxisKey: 'key',
+                        yAxisKey: 'value'
+                    },
+                    indexAxis: 'x'
                 }
             }
         }
