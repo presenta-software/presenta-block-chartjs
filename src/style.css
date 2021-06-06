@@ -1,5 +1,5 @@
 :root{
-    --chartjsPadding: 0;
+    --chartjsPadding: 1rem;
 }
 
 .chartjs{

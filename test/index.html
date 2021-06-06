@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div id="wrapper"></div>
+    <div id="wrapper" style="width:600px;height:400px;"></div>
 
     <script>
         var block = {
@@ -18,7 +18,6 @@
                 data: {
                     datasets: [{
                         label: 'Sales',
-                        borderColor: 'rgb(75, 192, 192)',
                         backgroundColor: 'rgb(75, 192, 192)',
                         data: [
                             {key: '2019', value: 1500}, 
@@ -28,7 +27,6 @@
                     },
                     {
                         label: 'Purchases',
-                        borderColor: 'rgb(175, 92, 192)',
                         backgroundColor: 'rgb(175, 92, 192)',
                         data: [
                             {key: '2019', value: 2500}, 
@@ -51,6 +49,14 @@
                 }
             }
         }
+
+//         block = {
+//             type: 'chartjs',
+//             csv: `Cat,2019,2020,2021,2022
+// Sales,200,234,23,34
+// Purchases,120,202,32,43
+// Other,20,102,132,143`
+//         }
         new PresentaBlockChartjs(document.querySelector('#wrapper'), block)
     </script>
 </body>

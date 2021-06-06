@@ -1,52 +1,61 @@
 import css from './style.css'
 import Chart from 'chart.js/auto'
-
-const props = ['padding']
+import props from './props'
+import Papa from 'papaparse'
 
 const block = function (el, config) {
+  const previewMode = config._mode === 'preview'
+
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
 
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
-  const upper = (s) => s.charAt(0).toUpperCase() + s.slice(1)
-
-  let blockProps = ''
-  for (var k in config) {
-    if (props.indexOf(k) >= 0) {
-      blockProps += '--chartjs' + upper(k) + ':' + config[k] + ';'
-    }
-  }
-  child.style = blockProps
+  props(child, config)
 
   el.appendChild(child)
 
-  let def = config.config
+  var def = config.config
   let instancedChart = null
+  const csv = config.csv
 
   const createChart = () => {
     if (!def.options) def.options = {}
-    def.options.maintainAspectRatio = false
+    const opt = def.options
+    opt.maintainAspectRatio = false
+    if (previewMode) opt.animation = false
     instancedChart = new Chart(canvas, def)
   }
   const canvas = child.querySelector('canvas')
 
-  if (def) {
-    createChart()
-  } else {
-    if (config._cache) {
-      def = JSON.parse(config._cache)
-      createChart()
-    } else {
-      // fallback to direct loading
-      fetch(config.url)
-        .then(resp => resp.text())
-        .then(data => {
-          config._cache = data
-          def = JSON.parse(config._cache)
-          createChart()
-        })
+  // I can set the whole chart.js config object
+  if (def) createChart()
+
+  // or providing only the data as csv
+  if (csv) {
+    const data = Papa.parse(csv, { header: true, dynamicTyping: true })
+    const firstKey = data.meta.fields[0]
+    const labels = data.meta.fields.filter(d => d !== firstKey)
+    const colors = ['red', 'blue', 'orange']
+
+    const arr = data.data.map((d, i) => {
+      const dt = Object.entries(d).map(c => (c[1]))
+      return {
+        label: d[firstKey],
+        backgroundColor: colors[i],
+        borderColor: colors[i],
+        data: dt
+      }
+    })
+
+    def = {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: arr
+      }
     }
+    createChart()
   }
 
   this.destroy = () => {
