@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PresentaBlockChartjs</title>
     <script src="../dist/presenta-block-chartjs.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Stint+Ultra+Condensed&display=swap" rel="stylesheet">
+    <style>
+        body{
+            --colorBack: red;
+            --fontText: 'Stint Ultra Condensed';
+        }
+    </style>
 </head>
 <body>
 
@@ -18,7 +27,7 @@
                 data: {
                     datasets: [{
                         label: 'Sales',
-                        backgroundColor: 'rgb(75, 192, 192)',
+                        //backgroundColor: 'rgb(75, 192, 192)',
                         data: [
                             {key: '2019', value: 1500}, 
                             {key: '2020', value: 500},
@@ -27,7 +36,7 @@
                     },
                     {
                         label: 'Purchases',
-                        backgroundColor: 'rgb(175, 92, 192)',
+                        //backgroundColor: 'rgb(175, 92, 192)',
                         data: [
                             {key: '2019', value: 2500}, 
                             {key: '2020', value: 200},
@@ -50,13 +59,13 @@
             }
         }
 
-//         block = {
-//             type: 'chartjs',
-//             csv: `Cat,2019,2020,2021,2022
-// Sales,200,234,23,34
-// Purchases,120,202,32,43
-// Other,20,102,132,143`
-//         }
+        block = {
+            type: 'chartjs',
+            csv: `Cat,2019,2020,2021,2022
+Sales,200,234,23,34
+Purchases,120,202,32,43
+Other,20,102,132,143`
+        }
         new PresentaBlockChartjs(document.querySelector('#wrapper'), block)
     </script>
 </body>

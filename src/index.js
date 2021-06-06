@@ -11,6 +11,13 @@ const block = function (el, config) {
 
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
+  const colorBack = getComputedStyle(el).getPropertyValue('--colorBack')
+  const fontText = getComputedStyle(el).getPropertyValue('--fontText')
+
+  Chart.defaults.backgroundColor = colorBack
+  Chart.defaults.borderColor = colorBack
+  Chart.defaults.font.family = fontText
+
   props(child, config)
 
   el.appendChild(child)
@@ -36,14 +43,14 @@ const block = function (el, config) {
     const data = Papa.parse(csv, { header: true, dynamicTyping: true })
     const firstKey = data.meta.fields[0]
     const labels = data.meta.fields.filter(d => d !== firstKey)
-    const colors = ['red', 'blue', 'orange']
+    // const colors = ['red', 'blue', 'orange']
 
     const arr = data.data.map((d, i) => {
       const dt = Object.entries(d).map(c => (c[1]))
       return {
         label: d[firstKey],
-        backgroundColor: colors[i],
-        borderColor: colors[i],
+        // backgroundColor: colors[i],
+        // borderColor: colors[i],
         data: dt
       }
     })
