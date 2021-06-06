@@ -1,18 +1,31 @@
 import css from './style.css'
 import Chart from 'chart.js/auto'
 
+const props = ['padding']
+
 const block = function (el, config) {
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
 
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
+  const upper = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+
+  let blockProps = ''
+  for (var k in config) {
+    if (props.indexOf(k) >= 0) {
+      blockProps += '--chartjs' + upper(k) + ':' + config[k] + ';'
+    }
+  }
+  child.style = blockProps
+
+  el.appendChild(child)
+
   let def = config.config
   let instancedChart = null
 
   const createChart = () => {
     if (!def.options) def.options = {}
-    def.options.responsive = true
     def.options.maintainAspectRatio = false
     instancedChart = new Chart(canvas, def)
   }
@@ -36,17 +49,9 @@ const block = function (el, config) {
     }
   }
 
-  this.beforeDestroy = () => {
-  }
-
-  this.stepForward = (step) => {
-  }
-
   this.destroy = () => {
     if (instancedChart) instancedChart.destroy()
   }
-
-  el.appendChild(child)
 }
 
 export default block
