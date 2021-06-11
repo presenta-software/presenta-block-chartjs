@@ -9,6 +9,8 @@ const block = function (el, config) {
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
 
+  const chartType = config.ctype || 'bar'
+
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
   const colorBack = getComputedStyle(el).getPropertyValue('--colorBack')
@@ -56,7 +58,7 @@ const block = function (el, config) {
     })
 
     def = {
-      type: 'bar',
+      type: chartType,
       data: {
         labels,
         datasets: arr
