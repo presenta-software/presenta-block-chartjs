@@ -4,9 +4,20 @@
 
 This block displays a [Chart.js](https://www.chartjs.org/) component within a [PRESENTA Lib](https://github.com/presenta-software/presenta-lib) document.
 
-## Documentation
+## Installation
 
-Full documentation can be found [here](https://lib.presenta.cc/plugins/blocks/chartjs).
+Please read the installation istructions for official plugins [here](https://lib.presenta.cc/extend/#install-an-official-plugin) using this unique identifier: `block-chartjs `
+
+## Usage
+
+To configure this block use this setting:
+
+```js
+{
+    type: 'chartjs', // required
+    config: {...} // required A valid Chart.js configuration object
+}
+```
 
 ## Contribute
 
