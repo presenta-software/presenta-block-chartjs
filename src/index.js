@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto'
 import Papa from 'papaparse'
 
 const block = function (el, config) {
-  const previewMode = config._mode === 'preview'
+  const previewMode = config._mode === 'preview' || config._mode === 'print'
 
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
