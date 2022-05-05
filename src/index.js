@@ -1,6 +1,5 @@
 import css from './style.css'
 import Chart from 'chart.js/auto'
-import props from './props'
 import Papa from 'papaparse'
 
 const block = function (el, config) {
@@ -9,7 +8,14 @@ const block = function (el, config) {
   const child = document.createElement('div')
   child.classList.add(css.chartjs)
 
-  const chartType = config.ctype || 'bar'
+  let instancedChart = null
+  const csv = config.csv
+
+  var def = {
+    type: config.chartType || 'bar',
+    data: config.chartData,
+    options: config.chartOptions || {}
+  }
 
   child.innerHTML = `<canvas class="${css.cnv}"></canvas>`
 
@@ -20,16 +26,9 @@ const block = function (el, config) {
   Chart.defaults.borderColor = colorBack
   Chart.defaults.font.family = fontText
 
-  props(child, config)
-
   el.appendChild(child)
 
-  var def = config.config
-  let instancedChart = null
-  const csv = config.csv
-
   const createChart = () => {
-    if (!def.options) def.options = {}
     const opt = def.options
     opt.maintainAspectRatio = false
     if (previewMode) opt.animation = false
@@ -38,13 +37,13 @@ const block = function (el, config) {
   const canvas = child.querySelector('canvas')
 
   // I can set the whole chart.js config object
-  if (def) createChart()
-
-  // or providing only the data as csv
-  if (csv) {
+  if (def.data) {
+    createChart()
+  } else if (csv) {
     const data = Papa.parse(csv, { header: true, dynamicTyping: true })
     const firstKey = data.meta.fields[0]
     const labels = data.meta.fields.filter(d => d !== firstKey)
+
     // const colors = ['red', 'blue', 'orange']
 
     const arr = data.data.map((d, i) => {
@@ -57,13 +56,11 @@ const block = function (el, config) {
       }
     })
 
-    def = {
-      type: chartType,
-      data: {
-        labels,
-        datasets: arr
-      }
+    def.data = {
+      labels,
+      datasets: arr
     }
+
     createChart()
   }
 
@@ -76,7 +73,6 @@ export default block
 
 block.install = Presenta => {
   Presenta.addBlock('chartjs', block)
-  if (Presenta.io.addCache) Presenta.io.addCache({ type: 'chartjs', field: 'url' })
 }
 
 if (typeof window !== 'undefined' && window.Presenta) {
